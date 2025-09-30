@@ -49,7 +49,7 @@ void DrawingWidget::paintEvent(QPaintEvent *event) {
     if (!m_hullPoints.isEmpty()) {
         painter.setPen(QPen(Qt::red, 2));
         painter.setBrush(Qt::NoBrush);
-
+        
         // Buat poligon dari titik-titik hull
         QPolygonF hullPolygon;
         for(const QPoint &p : m_hullPoints) {
@@ -89,7 +89,7 @@ void DrawingWidget::calculateSlowHull() {
     timer.start();
 
     m_hullPoints = giftWrapping(m_points);
-
+    
     qDebug() << "Slow Convex Hull (Gift Wrapping) selesai dalam" << timer.elapsed() << "ms.";
     update();
 }
@@ -99,7 +99,7 @@ QVector<QPoint> DrawingWidget::giftWrapping(const QVector<QPoint>& points) {
     if (n < 3) return {};
 
     QVector<QPoint> hull;
-
+    
     // 1. Cari titik paling kiri
     int l = 0;
     for (int i = 1; i < n; i++) {
@@ -114,10 +114,10 @@ QVector<QPoint> DrawingWidget::giftWrapping(const QVector<QPoint>& points) {
         hull.append(points[p]);
         q = (p + 1) % n;
         for (int i = 0; i < n; i++) {
-            // Temukan titik 'q' yang paling berlawanan arah jarum jam
-            if (orientation(points[p], points[i], points[q]) == 2) {
-                q = i;
-            }
+           // Temukan titik 'q' yang paling berlawanan arah jarum jam
+           if (orientation(points[p], points[i], points[q]) == 2) {
+               q = i;
+           }
         }
         p = q;
     } while (p != l);
@@ -134,7 +134,7 @@ void DrawingWidget::calculateFastHull() {
     timer.start();
 
     m_hullPoints = grahamScan(m_points);
-
+    
     qDebug() << "Fast Convex Hull (Graham Scan) selesai dalam" << timer.elapsed() << "ms.";
     update();
 }
@@ -190,7 +190,7 @@ QVector<QPoint> DrawingWidget::grahamScan(QVector<QPoint> points) {
             s.pop();
             QPoint next_to_top = s.top();
             s.push(top);
-
+            
             if (orientation(next_to_top, s.top(), points[i]) != 1) { // Jika tidak clockwise
                 s.pop();
             } else {
@@ -209,44 +209,24 @@ QVector<QPoint> DrawingWidget::grahamScan(QVector<QPoint> points) {
     // Karena stack LIFO, hasilnya terbalik. Kita bisa reverse, atau biarkan saja
     // karena QPolygon bisa menggambar dengan urutan apapun.
     // std::reverse(hull.begin(), hull.end());
-
+    
     return hull;
 }
 
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
 
-//====================================================================
-// Implementasi MainWindow
-//====================================================================
-
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     setWindowTitle("Convex Hull Visualizer");
 
-    // Widget utama dan layout
-    QWidget *centralWidget = new QWidget(this);
-    QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
-
-    drawingWidget = new DrawingWidget(this);
-    mainLayout->addWidget(drawingWidget);
-
-    // Layout untuk tombol-tombol
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-    slowHullButton = new QPushButton("Hitung Slow Hull (Jarvis March)", this);
-    fastHullButton = new QPushButton("Hitung Fast Hull (Graham Scan)", this);
-    clearButton = new QPushButton("Bersihkan", this);
-
-    buttonLayout->addWidget(slowHullButton);
-    buttonLayout->addWidget(fastHullButton);
-    buttonLayout->addStretch(); // Spacer
-    buttonLayout->addWidget(clearButton);
-
-    mainLayout->addLayout(buttonLayout);
-
-    setCentralWidget(centralWidget);
-
-    // Hubungkan sinyal tombol ke slot di DrawingWidget
-    connect(slowHullButton, &QPushButton::clicked, drawingWidget, &DrawingWidget::calculateSlowHull);
-    connect(fastHullButton, &QPushButton::clicked, drawingWidget, &DrawingWidget::calculateFastHull);
-    connect(clearButton, &QPushButton::clicked, drawingWidget, &DrawingWidget::clearPoints);
+    connect(ui->slowHullButton, &QPushButton::clicked, ui->drawingWidgetPlaceholder, &DrawingWidget::calculateSlowHull);
+    connect(ui->fastHullButton, &QPushButton::clicked, ui->drawingWidgetPlaceholder, &DrawingWidget::calculateFastHull);
+    connect(ui->clearButton, &QPushButton::clicked, ui->drawingWidgetPlaceholder, &DrawingWidget::clearPoints);
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow()
+{
+    delete ui;
+}

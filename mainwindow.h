@@ -7,6 +7,10 @@
 #include <QPoint>
 #include <QMouseEvent>
 
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
+
 // Forward declaration
 class QPushButton;
 
@@ -53,10 +57,7 @@ public:
     ~MainWindow();
 
 private:
-    DrawingWidget *drawingWidget;
-    QPushButton *slowHullButton;
-    QPushButton *fastHullButton;
-    QPushButton *clearButton;
+    Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H

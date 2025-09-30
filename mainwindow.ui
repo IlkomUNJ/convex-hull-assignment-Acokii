@@ -13,79 +13,75 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="button">
-   <widget class="QPushButton" name="slowConvex">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>480</y>
-      <width>161</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run Convex Hull</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="fastConvex">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>480</y>
-      <width>161</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run Fast Convex Hull</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="clearDot">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>480</y>
-      <width>161</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Clear All</string>
-    </property>
-   </widget>
-   <widget class="CoordinateBox" name="coordinatebox">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>40</y>
-      <width>651</width>
-      <height>411</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Shower</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="iteration">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>460</y>
-      <width>66</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="DrawingWidget" name="drawingWidgetPlaceholder">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="slowHullButton">
+        <property name="text">
+         <string>Hitung Slow Hull (Jarvis March)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="fastHullButton">
+        <property name="text">
+         <string>Hitung Fast Hull (Graham Scan)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="clearButton">
+        <property name="text">
+         <string>Bersihkan</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CoordinateBox</class>
-   <extends>QGroupBox</extends>
-   <header location="global">coordinatebox.h</header>
+   <class>DrawingWidget</class>
+   <extends>QWidget</extends>
+   <header>mainwindow.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
