@@ -1,0 +1,9 @@
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/convex-simulation.dir
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/edit_cache.dir
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/rebuild_cache.dir
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/list_install_components.dir
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/install.dir
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/install/local.dir
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/install/strip.dir
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/convex-simulation_autogen_timestamp_deps.dir
+/home/coki/Documents/sem5/CompGraf/convex-simulation/build/kitsdesktopqt5-Debug/CMakeFiles/convex-simulation_autogen.dir
